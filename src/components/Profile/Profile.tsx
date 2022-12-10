@@ -2,9 +2,14 @@ import React from "react";
 import classes from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileIndo/ProfileInfo";
+import {ProfilePageType} from "../../redux/state";
 
 
-const Profile = (props) => {
+type PropsProfilePageType = {
+    state : ProfilePageType
+}
+
+const Profile = (props:PropsProfilePageType) => {
 
     return <div>
         <ProfileInfo />

@@ -6,8 +6,18 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route,Routes} from "react-router-dom";
+import state, {RootStateType} from "./redux/state";
 
-function App (props: any) {
+
+
+type AppStateType={
+   state:RootStateType
+}
+
+
+function App (props:AppStateType) {
+
+
 
     return (
             <div className='app-wrapper'>

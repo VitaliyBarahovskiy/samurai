@@ -1,5 +1,35 @@
+export  type ProfilePageType = {
+    posts : Array<PostsType>
+}
 
-let state = {
+export type PostsType = {
+    id : number
+    message: string
+    likesCount: number
+
+}
+
+export type DialogsPageType = {
+    messages : Array<MessagesType>
+    dialogs : Array<DialogsType>
+}
+
+export type MessagesType = {
+    id : number
+    message: string
+}
+
+export type DialogsType = {
+    id : number
+    name: string
+}
+
+export type RootStateType = {
+    profilePage : ProfilePageType
+    dialogsPage : DialogsPageType
+}
+
+let state: RootStateType = {
     profilePage: {
         posts: [
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
@@ -11,7 +41,7 @@ let state = {
     dialogsPage: {
         messages: [
             {id: 1, message: 'Hi'},
-            {id: 2, message: 'How is your drocher?'},
+            {id: 2, message: 'How is your cry?'},
             {id: 3, message: 'Yo'},
             {id: 4, message: 'Yo'},
             {id: 5, message: 'Yo'}
