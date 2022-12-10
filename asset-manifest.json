@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/samurai/static/css/main.027ff102.css",
+    "main.js": "/samurai/static/js/main.40defcf6.js",
+    "static/js/787.201eaf24.chunk.js": "/samurai/static/js/787.201eaf24.chunk.js",
+    "index.html": "/samurai/index.html",
+    "main.027ff102.css.map": "/samurai/static/css/main.027ff102.css.map",
+    "main.40defcf6.js.map": "/samurai/static/js/main.40defcf6.js.map",
+    "787.201eaf24.chunk.js.map": "/samurai/static/js/787.201eaf24.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.027ff102.css",
+    "static/js/main.40defcf6.js"
+  ]
+}
