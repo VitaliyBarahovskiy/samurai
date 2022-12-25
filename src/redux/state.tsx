@@ -1,3 +1,5 @@
+import {renderTree} from "../index";
+
 export  type ProfilePageType = {
     posts : Array<PostsType>
 }
@@ -27,6 +29,7 @@ export type DialogsType = {
 export type RootStateType = {
     profilePage : ProfilePageType
     dialogsPage : DialogsPageType
+
 }
 
 let state: RootStateType = {
@@ -55,6 +58,20 @@ let state: RootStateType = {
             {id: 6, name: 'Valera'}
         ]
     }
+}
+
+
+
+
+export let addPost = (postText:string) =>{
+    let newPost = {
+        id: 5,
+        message: postText,
+        likesCount : 0
+    }
+    state.profilePage.posts.push(newPost);
+
+    renderTree(state);
 }
 
 export default state;

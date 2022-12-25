@@ -6,7 +6,9 @@ import state, {DialogsPageType} from "../../redux/state";
 
 type DialogsPropsType ={
     state: DialogsPageType
+
 }
+
 
 
 
@@ -19,7 +21,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 { props.state.dialogs.map( (d, i) => <DialogItem key={i} name={d.name} />) }
             </div>
             <div className={classes.messages}>
-                { props.state.messages.map( (m, i) => <Message key={i} id={m.id}  message={m.message}/> ) }
+                { props.state.messages.map( (m, i) => <Message key={i} id={m.id}  message={m.message}/> )}
             </div>
         </div>
     )
