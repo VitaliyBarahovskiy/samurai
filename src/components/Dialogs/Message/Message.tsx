@@ -5,7 +5,7 @@ import classes from './../Dialogs.module.css';
 type MessagePropsType ={
     id: number;
     message: string
-    addMessage: (addMessage:string)=> void
+    addMessage: (message:string)=> void
 }
 
 

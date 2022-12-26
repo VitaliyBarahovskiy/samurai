@@ -61,6 +61,15 @@ let state: RootStateType = {
 }
 
 
+export let addMessage = (message:string) =>{
+    let newMessage = {
+        id: 5,
+        message,
+    }
+    state.dialogsPage.messages.push(newMessage);
+
+    renderTree(state);
+}
 
 
 export let addPost = (postText:string) =>{

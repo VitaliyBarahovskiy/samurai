@@ -6,13 +6,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route,Routes} from "react-router-dom";
-import state, {addPost, RootStateType} from "./redux/state";
+import state, { RootStateType} from "./redux/state";
 
 
 
-type AppStateType={
-    state:RootStateType
-    addPost: (postText:string)=> void
+type AppStateType= {
+    state: RootStateType
 }
 
 
@@ -26,8 +25,8 @@ function App (props:AppStateType) {
               <Navbar />
               <div className='app-wrapper-content'>
               <Routes>
-                <Route path="/dialogs" element={<Dialogs state={props.state.dialogsPage} />} />
-                <Route path="/profile" element={<Profile state={props.state.profilePage}  addPost={props.addPost}/>} />
+                <Route path="/dialogs" element={<Dialogs state={props.state.dialogsPage}  />} />
+                <Route path="/profile" element={<Profile state={props.state.profilePage}  />} />
               </Routes>
               </div>
             </div>
