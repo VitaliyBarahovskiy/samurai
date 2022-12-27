@@ -16,6 +16,7 @@ const Message = (props: MessagePropsType) => {
     let addMessage = ()=> {
         if ( newMessageElement.current) {
             props.addMessage(newMessageElement.current.value)
+            newMessageElement.current.value = ''
         }
     }
 
