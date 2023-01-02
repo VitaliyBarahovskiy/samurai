@@ -11,7 +11,9 @@ import state, { RootStateType} from "./redux/state";
 
 
 type AppStateType= {
-    state: RootStateType
+    state: RootStateType,
+
+
 }
 
 
