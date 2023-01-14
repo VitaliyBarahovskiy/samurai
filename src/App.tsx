@@ -27,7 +27,7 @@ const App = (props:{store:StoreType}) => {
                 />
                 <Route path="/profile" element={<Profile profilePage={store.getState().profilePage}
                                                          updateNewPostText={store.updateNewPostText.bind(store)}
-                                                         addPost={store.addPost}  />} />
+                                                         addPost={store.addPost.bind(store)}  newPostText={props.store.updateNewPostText}/>} />
               </Routes>
               </div>
             </div>

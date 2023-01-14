@@ -8,6 +8,7 @@ type PropsProfilePageType = {
     profilePage: ProfilePageType
     addPost: (PostText: string) =>void
     updateNewPostText:(newPostText:string)=> void
+    newPostText: (PostText: string) =>void
 }
 
 const Profile = (props: PropsProfilePageType) => {
@@ -19,8 +20,7 @@ const Profile = (props: PropsProfilePageType) => {
                      addPost={props.addPost}
                      newPostText={props.profilePage.newPostText}
                      message={props.profilePage.newPostText}
-                     updateNewText={props.updateNewPostText}
-            />
+                     updateNewText={props.updateNewPostText}/>
         </div>
     )
 }

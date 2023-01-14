@@ -1,5 +1,4 @@
-import message from "../components/Dialogs/Message/Message";
-import {Root} from "react-dom/client";
+
 
 export  type ProfilePageType = {
     posts: Array<PostsType>,
@@ -43,6 +42,7 @@ export type StoreType = {
     subscribe: (callback: (props:{store:StoreType}) => void) => void
     getState: ()=> RootStateType
     _callSubcriber: (props:{store:StoreType})=> void
+
 
 }
 

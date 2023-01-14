@@ -1,4 +1,4 @@
-import React, {DetailedHTMLProps, TextareaHTMLAttributes} from "react";
+import React from "react";
 import classes from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {PostsType} from "../../../redux/state";
@@ -7,8 +7,8 @@ type PropsPostsType = {
     message: string;
     posts: PostsType[]
     addPost: (postText: string) => void
-    newPostText: string
-    updateNewText: any
+    updateNewText: (newPostText:string)=> void
+    newPostText:string
 }
 
 export const MyPosts = (props: PropsPostsType) => {
@@ -16,11 +16,12 @@ export const MyPosts = (props: PropsPostsType) => {
     let postsElements =
         props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>);
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+    let  newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
-        if (newPostElement.current) {
+    let addPost = ()=> {
+        if ( newPostElement.current) {
             props.addPost(newPostElement.current.value)
+            newPostElement.current.value = ''
         }
     }
 
