@@ -1,6 +1,6 @@
 import './index.css';
 import App from './App';
-import store, {StoreType} from "./redux/state";
+import store, {ActionsTypes, StoreType} from "./redux/state";
 import {BrowserRouter} from "react-router-dom";
 import {render} from "react-dom";
 
@@ -14,7 +14,7 @@ const renderTree = (props:RenderTreePropsType) => {
     const{store}=props;
     render(
         <BrowserRouter>
-            <App store={store} />
+            <App store={store} dispatch={props.store.dispatch}/>
         </BrowserRouter>,
         document.getElementById('root')
     )

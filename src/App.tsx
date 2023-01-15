@@ -6,14 +6,19 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route,Routes} from "react-router-dom";
-import {StoreType} from "./redux/state";
+import {ActionsTypes, StoreType} from "./redux/state";
+
+type PropsAppType = {
+    store: StoreType,
+    dispatch: (action:ActionsTypes) => void
+
+
+}
 
 
 
 
-
-
-const App = (props:{store:StoreType}) => {
+const App = (props: PropsAppType) => {
     const {store}=props;
 
     return (
@@ -26,8 +31,8 @@ const App = (props:{store:StoreType}) => {
                                                          addMessage={store.addMessage.bind(store)}  />}
                 />
                 <Route path="/profile" element={<Profile profilePage={store.getState().profilePage}
-                                                         updateNewPostText={store.updateNewPostText.bind(store)}
-                                                         addPost={store.addPost.bind(store)}  newPostText={props.store.updateNewPostText}/>} />
+                                                         dispatch={store.dispatch.bind(store)} />} />
+
               </Routes>
               </div>
             </div>
