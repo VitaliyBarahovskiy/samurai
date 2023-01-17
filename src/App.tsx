@@ -10,13 +10,10 @@ import {ActionsTypes, StoreType} from "./redux/state";
 
 type PropsAppType = {
     store: StoreType,
-    dispatch: (action:ActionsTypes) => void
+
 
 
 }
-
-
-
 
 const App = (props: PropsAppType) => {
     const {store}=props;
@@ -27,9 +24,9 @@ const App = (props: PropsAppType) => {
               <Navbar />
               <div className='app-wrapper-content'>
               <Routes>
-                <Route path="/dialogs" element={<Dialogs dialogsPage={store.getState().dialogsPage}
-                                                         addMessage={store.addMessage.bind(store)}  />}
-                />
+                <Route path="/dialogs" element={<Dialogs store={store}
+                                                         addMessage={store.addMessage.bind(store)}
+                                                         dialogsPage={store.getState().dialogsPage}/>} />
                 <Route path="/profile" element={<Profile profilePage={store.getState().profilePage}
                                                          dispatch={store.dispatch.bind(store)} />} />
 

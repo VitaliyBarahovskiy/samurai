@@ -16,6 +16,7 @@ export type PostsType = {
 export type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
+    newMessageBody: string
 }
 
 export type MessagesType = {
@@ -29,29 +30,32 @@ export type DialogsType = {
 }
 
 export type RootStateType = {
+    [x: string]: any
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 
 export type AddPostReturnType = ReturnType<typeof addPostAC>
 export type UpdateNewPostText= ReturnType<typeof updateNewPostTextAC>
+export type UpdateNewMessageBody = ReturnType<typeof updateNewMessageBodyAC>
+export type SendMessage = ReturnType<typeof sendMessageAC>
 
 
 // export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-export type ActionsTypes = AddPostReturnType | UpdateNewPostText
+export type ActionsTypes = AddPostReturnType | UpdateNewPostText | UpdateNewMessageBody | SendMessage
 
-export const addPostAC = ()  => {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
 
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type : 'UPDATE-NEW-POST-TEXT',
-        newPostText: newText
-    } as const
-}
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT ='UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_MESSAGE_BODY ='UPDATE-NEW-MESSAGE-BODY'
+const SEND_MESSAGE ='SEND-MESSAGE'
+
+
+export const addPostAC = ()  => ({type: ADD_POST}) as const
+export const updateNewPostTextAC = (newText: string) => ({type : UPDATE_NEW_POST_TEXT, newPostText: newText}) as const
+export const updateNewMessageBodyAC = (body: string) => ({type : UPDATE_NEW_MESSAGE_BODY, body: body}) as const
+export const sendMessageAC = () => ({type : SEND_MESSAGE}) as const
+
 
 
 
@@ -93,7 +97,8 @@ let store:StoreType = {
                 {id: 4, name: 'Sasha'},
                 {id: 5, name: 'Viktor'},
                 {id: 6, name: 'Valera'}
-            ]
+            ],
+            newMessageBody: ''
         }
     },
     getState() {
@@ -114,8 +119,8 @@ let store:StoreType = {
     subscribe(callback: (props:{store:StoreType}) => void) {
         this._callSubcriber = callback;
     },
-    dispatch (action) {
-        if(action.type === 'ADD-POST') {
+    dispatch: function (action) {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -124,8 +129,16 @@ let store:StoreType = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = ''
             this._callSubcriber({store});
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newPostText;
+            this._callSubcriber({store});
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._callSubcriber({store});
+        }else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.messages.push({id:6, message: body})
             this._callSubcriber({store});
         }
     }
@@ -135,4 +148,3 @@ let store:StoreType = {
 
 
 export default store;
-// window.store = store

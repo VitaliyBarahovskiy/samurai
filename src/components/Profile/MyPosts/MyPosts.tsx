@@ -9,6 +9,9 @@ type PropsPostsType = {
     dispatch: (action: ActionsTypes )=> void
 }
 
+
+
+
 export const MyPosts = (props: PropsPostsType) => {
 
     let postsElements =

@@ -14,7 +14,7 @@ const renderTree = (props:RenderTreePropsType) => {
     const{store}=props;
     render(
         <BrowserRouter>
-            <App store={store} dispatch={props.store.dispatch}/>
+            <App store={store}/>
         </BrowserRouter>,
         document.getElementById('root')
     )
