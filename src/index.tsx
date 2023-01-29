@@ -1,27 +1,24 @@
 import './index.css';
 import App from './App';
-import store, {ActionsTypes, StoreType} from "./redux/state";
+import store from "./redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import {render} from "react-dom";
+import {Provider} from "react-redux";
 
 
-type RenderTreePropsType={
-    store:StoreType
-}
 
 
-const renderTree = (props:RenderTreePropsType) => {
-    const{store}=props;
+const renderTree = () => {
     render(
         <BrowserRouter>
-            <App store={store}/>
+            <Provider store={store}>
+            <App />
+            </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     )
 }
 
-renderTree({store:store});
+renderTree();
 
 store.subscribe(renderTree);
-
-// renderTree();

@@ -43,6 +43,7 @@ export type ActionsTypes = AddPostReturnType | UpdateNewPostText | UpdateNewMess
 
 
 export type StoreType = {
+
     _state: RootStateType
     addMessage: (message:string) => void
     subscribe: (callback: (props:{store:StoreType}) => void) => void
@@ -96,7 +97,7 @@ let store:StoreType = {
         }
         this._state.dialogsPage.messages.push(newMessage);
 
-        this._callSubcriber({store});
+        this._callSubcriber({store: store});
     },
     subscribe(callback: (props:{store:StoreType}) => void) {
         this._callSubcriber = callback;
@@ -105,7 +106,7 @@ let store:StoreType = {
 
         this._state.profilePage = profileReduce(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReduce(this._state.dialogsPage, action)
-        this._callSubcriber({store});
+        this._callSubcriber({store: store});
 
     }
 
