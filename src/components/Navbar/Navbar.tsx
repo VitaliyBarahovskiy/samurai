@@ -6,10 +6,19 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     return <nav className={classes.nav}>
         <div className={classes.item}>
-            <NavLink className={(navData) => navData.isActive ? "active" : classes.activeLink } to="/profile">Profile</NavLink>
+            <NavLink className={(navData) =>
+                navData.isActive ? "active" : classes.activeLink }
+                     to="/profile">Profile</NavLink>
         </div>
         <div className={classes.item}>
-            <NavLink className={(navData) => navData.isActive ? "active" : classes.activeLink } to="/dialogs">Messages</NavLink>
+            <NavLink className={(navData) =>
+                navData.isActive ? "active" : classes.activeLink }
+                     to="/dialogs">Messages</NavLink>
+        </div>
+        <div className={classes.item}>
+            <NavLink className={(navData) =>
+                navData.isActive ? "active" : classes.activeLink }
+                     to="/users">Users</NavLink>
         </div>
         <div className={classes.item}>
             <NavLink to="/news">News</NavLink>
