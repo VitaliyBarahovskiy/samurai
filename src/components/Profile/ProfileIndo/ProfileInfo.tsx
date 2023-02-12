@@ -1,17 +1,29 @@
 import React from "react";
 import classes from './ProfileInfo.module.css'
+import {ProfileType} from "../../../redux/store";
+import Preloader from "../../Common/Preloader/Preloader";
 
 
-const ProfileInfo = () => {
-    return <div>
-        <div>
-            <img src='https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014__340.jpg'/>
-        </div>
-        <div className={classes.discriptionBlock}>
-            ava + post
-        </div>
-    </div>
+type ProfileInfoPropsType = {
+    profile: ProfileType | null
 }
+const ProfileInfo = (props: ProfileInfoPropsType) => {
+    if (!props.profile) {
+        return <Preloader />
+    }
+    return (
+        <div>
+            <div>
+            </div>
+            <div className={classes.descriptionBlock}>
+                <img className={classes.ava}
+                     src={props.profile.photos.small}
+                     alt="pic"/>
+                {props.profile.aboutMe}
+            </div>
 
+        </div>
+    );
+};
 
 export default ProfileInfo;

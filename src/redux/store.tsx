@@ -1,10 +1,14 @@
-import profileReduce, {AddPostReturnType, UpdateNewPostText} from "./profile-reduce";
+import profileReduce, {AddPostReturnType, setUserProfileType, UpdateNewPostTextType} from "./profile-reduce";
 import dialogsReduce, {SendMessage, UpdateNewMessageBody} from "./dialogs-reducer";
 
 
 export  type ProfilePageType = {
     posts: Array<PostsType>,
-    newPostText: string
+    newPostText: string,
+    profile:null | ProfileType
+
+
+
 
 }
 
@@ -34,27 +38,54 @@ export type DialogsType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+
 }
 
 
-export type ActionsTypes = AddPostReturnType | UpdateNewPostText | UpdateNewMessageBody | SendMessage
+export type ProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: null | string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null | string
+        github: string
+        mainLink: null | string
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
 
 
+
+export type ActionsTypes = AddPostReturnType |
+    UpdateNewPostTextType |
+    UpdateNewMessageBody |
+    SendMessage |
+    setUserProfileType
 
 
 export type StoreType = {
 
     _state: RootStateType
-    addMessage: (message:string) => void
-    subscribe: (callback: (props:{store:StoreType}) => void) => void
-    getState: ()=> RootStateType
-    _callSubcriber: (props:{store:StoreType})=> void
-    dispatch: (action: ActionsTypes )=> void
+    addMessage: (message: string) => void
+    subscribe: (callback: (props: { store: StoreType }) => void) => void
+    getState: () => RootStateType
+    _callSubcriber: (props: { store: StoreType }) => void
+    dispatch: (action: ActionsTypes) => void
 
 
 }
 
-let store:StoreType = {
+const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -63,7 +94,9 @@ let store:StoreType = {
                 {id: 3, message: 'Blabla', likesCount: 5},
                 {id: 4, message: 'Dada', likesCount: 11}
             ],
-            newPostText: "Want",
+            newPostText: "",
+            profile: null
+
         },
         dialogsPage: {
             messages: [
@@ -87,10 +120,10 @@ let store:StoreType = {
     getState() {
         return this._state
     },
-    _callSubcriber(props:{store:StoreType}) {
+    _callSubcriber(props: { store: StoreType }) {
         console.log('changed')
     },
-    addMessage(message: string){
+    addMessage(message: string) {
         let newMessage = {
             id: 5,
             message,
@@ -99,10 +132,10 @@ let store:StoreType = {
 
         this._callSubcriber({store: store});
     },
-    subscribe(callback: (props:{store:StoreType}) => void) {
+    subscribe(callback: (props: { store: StoreType }) => void) {
         this._callSubcriber = callback;
     },
-    dispatch (action: ActionsTypes) {
+    dispatch(action: ActionsTypes) {
 
         this._state.profilePage = profileReduce(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReduce(this._state.dialogsPage, action)
