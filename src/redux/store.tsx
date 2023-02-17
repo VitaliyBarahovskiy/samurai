@@ -1,5 +1,6 @@
 import profileReduce, {AddPostReturnType, setUserProfileType, UpdateNewPostTextType} from "./profile-reduce";
 import dialogsReduce, {SendMessage, UpdateNewMessageBody} from "./dialogs-reducer";
+import {setUserDataType} from "./auth-reduce";
 
 
 export  type ProfilePageType = {
@@ -70,7 +71,8 @@ export type ActionsTypes = AddPostReturnType |
     UpdateNewPostTextType |
     UpdateNewMessageBody |
     SendMessage |
-    setUserProfileType
+    setUserProfileType |
+    setUserDataType
 
 
 export type StoreType = {
