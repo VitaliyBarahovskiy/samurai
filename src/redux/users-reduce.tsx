@@ -149,7 +149,6 @@ export const follow = (userId: number) => {
         followUser(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(followSuccess(userId));
-                console.log(`FOLLOW ${userId} ${data}`)
             }
 
             dispatch(toggleFollowingProgress(false, userId));
@@ -164,7 +163,6 @@ export const unfollow = (userId: number) => {
         unfollowUser(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId));
-                console.log(`UNFOLLOW ${userId} ${data}`)
             }
 
             dispatch(toggleFollowingProgress(false, userId));

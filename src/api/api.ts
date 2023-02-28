@@ -23,7 +23,7 @@ export const unfollowUser = (userId: number) => {
 }
 
 export const followUser = (userId: number) => {
-    return instance.post(`https://follow/${userId}`, )
+    return instance.post(`follow/${userId}` )
         .then(response => response.data)
 }
 
