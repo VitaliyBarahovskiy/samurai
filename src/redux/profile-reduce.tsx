@@ -12,8 +12,10 @@ export const addPostAC = (newPostText: string) => ({type: ADD_POST}) as const
 export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText: newText}) as const
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile}) as const
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+    console.log(userId)
     getProfile(userId)
         .then(response => {
+
             dispatch(setUserProfile(response.data))
 
         })
@@ -34,27 +36,7 @@ let initialState : ProfilePageType = {
             {id: 4, message: 'Dada', likesCount: 11}
         ],
         newPostText: "Click me",
-        profile: {
-            "aboutMe": "!!!!!",
-            "contacts": {
-                "facebook": "!!!!!",
-                "website": null,
-                "vk": "!!!!!",
-                "twitter": "!!!!!!!!!!!!",
-                "instagram": "!!!!!!!!!!!",
-                "youtube": null,
-                "github": "!!!!!!!!!!!!",
-                "mainLink": null
-            },
-            "lookingForAJob": true,
-            "lookingForAJobDescription": "!!!!!!!!!!!!!!",
-            "fullName": "!!!!!!!!!!!!!",
-            "userId": 2,
-            "photos": {
-                "small": ''/*"https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0"*/,
-                "large": ''/*"https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"*/
-            }
-        }
+        profile: null
 }
 
 

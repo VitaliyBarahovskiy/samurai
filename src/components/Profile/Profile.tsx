@@ -6,7 +6,6 @@ import {ProfilePageType} from "../../redux/store";
 
 
 const Profile = (props: ProfilePageType) => {
-
     return (
         <div>
             <ProfileInfo profile={props.profile}/>

@@ -106,6 +106,7 @@ const usersReduce = (state: initialStateType = initialState, action: ActionUsers
             }
 
         case SET_USERS: {
+            console.log(action.users)
             return {...state, users: action.users}
         }
         case SET_CURRENT_PAGE: {
