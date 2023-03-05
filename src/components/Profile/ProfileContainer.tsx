@@ -1,10 +1,35 @@
-import React, {useEffect} from "react";
+import React, {FC, useEffect} from "react";
 import Profile from "./Profile";
-import {useDispatch, useSelector} from "react-redux";
-import {ProfilePageType} from "../../redux/store";
+import {connect, useDispatch, useSelector} from "react-redux";
+import {PostsType, ProfilePageType, ProfileType} from "../../redux/store";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfile} from "../../redux/profile-reduce";
-import {Navigate, useParams} from "react-router-dom";
+import {useLocation, useParams, useNavigate} from "react-router-dom";
+import {compose} from "redux";
+
+
+
+type MapStatePropsType = {
+    posts: PostsType[]
+    newPostText: string
+    profile: ProfileType | null
+}
+
+function withRouter(Component: any) {
+    function ComponentWithRouterProp(props: any) {
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{ location, navigate, params }}
+            />
+        );
+    }
+
+    return ComponentWithRouterProp;
+}
 
 
 const ProfileContainer: React.FC = () => {
@@ -19,7 +44,7 @@ const ProfileContainer: React.FC = () => {
 
     }, [params.userId])
 
-    if (!isAuth) return <Navigate to={"/login"}/>
+
 
         return (
             <div>
@@ -30,4 +55,16 @@ const ProfileContainer: React.FC = () => {
             </div>
     )
 }
-export default ProfileContainer
+
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText,
+        profile: state.profilePage.profile,
+        // isAuth: state.auth.isAuth
+    }
+}
+
+
+export default  compose<FC>(connect(mapStateToProps, {getUserProfile}), withRouter)(ProfileContainer)

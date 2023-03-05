@@ -13,6 +13,7 @@ import LoginPage from "./components/Login/Login";
 const App = () => {
 
 
+    // @ts-ignore
     return (
         <div className='app-wrapper'>
             <HeaderContainer/>

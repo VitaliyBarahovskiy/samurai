@@ -18,7 +18,7 @@ type DialogsPropsType ={
 
 
 
-const Dialogs = (props: DialogsPropsType) => {
+const Dialogs = (props: DialogsPropsType): JSX.Element => {
 
     let dialogsElements = props.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
 
@@ -36,8 +36,6 @@ const Dialogs = (props: DialogsPropsType) => {
         props.updateNewMessageBody(body)
 
     }
-
-    if (!props.isAuth) return <Navigate to={"/login"}/>
 
     return (
         <div className={classes.dialogs}>
