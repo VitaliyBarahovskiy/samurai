@@ -35,7 +35,6 @@ function withRouter(Component: any) {
 const ProfileContainer: React.FC = () => {
     const params = useParams();
     const profilePage = useSelector<AppStateType, ProfilePageType>(state => state.profilePage)
-    const isAuth = useSelector<AppStateType, boolean>(state => state.auth.isAuth)
     const dispatch = useDispatch<any>()
 
     useEffect(() => {
@@ -46,13 +45,13 @@ const ProfileContainer: React.FC = () => {
 
 
 
-        return (
-            <div>
-                <Profile
-                    posts={profilePage.posts}
-                    newPostText={profilePage.newPostText}
-                    profile={profilePage.profile}/>
-            </div>
+    return (
+        <div>
+            <Profile
+                posts={profilePage.posts}
+                newPostText={profilePage.newPostText}
+                profile={profilePage.profile}/>
+        </div>
     )
 }
 

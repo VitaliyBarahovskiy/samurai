@@ -1,11 +1,15 @@
 import React from "react";
-import ProfileInfo from "./ProfileIndo/ProfileInfo";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {ProfilePageType} from "../../redux/store";
+import {PostsType, ProfileType} from "../../redux/store";
 
+type ProfilePropsType = {
+    posts: PostsType[]
+    newPostText: string
+    profile: ProfileType | null
+}
 
-
-const Profile = (props: ProfilePageType) => {
+const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo profile={props.profile}/>

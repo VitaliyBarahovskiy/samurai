@@ -11,6 +11,7 @@ export  type ProfilePageType = {
 
 
 
+
 }
 
 export type PostsType = {
