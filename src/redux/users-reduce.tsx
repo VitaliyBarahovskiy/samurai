@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {followUser, getUsers, unfollowUser} from "../api/api";
+import {usersAPI} from "../api/api";
 
 export type initialStateType = {
     users: UsersType[],
@@ -135,7 +135,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
 
-        getUsers(currentPage, pageSize).then(data => {
+        usersAPI.getusers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))
@@ -147,7 +147,7 @@ export const follow = (userId: number) => {
     return (dispatch: Dispatch<ActionUsersType>) => {
         dispatch(toggleFollowingProgress(true, userId));
 
-        followUser(userId).then(data => {
+        usersAPI.follow(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(followSuccess(userId));
             }
@@ -161,7 +161,7 @@ export const unfollow = (userId: number) => {
     return (dispatch: Dispatch<ActionUsersType>) => {
         dispatch(toggleFollowingProgress(true, userId));
 
-        unfollowUser(userId).then(data => {
+        usersAPI.unfollow(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId));
             }

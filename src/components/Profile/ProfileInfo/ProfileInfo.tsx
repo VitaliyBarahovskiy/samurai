@@ -7,8 +7,10 @@ import ProfileStatus from "./ProfileStatus"
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
+    status: string
+    updateStatus: (status: string) => void
 }
-const ProfileInfo = (props: ProfileInfoPropsType) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
 
     if (!props.profile) {
         return <Preloader />
@@ -21,7 +23,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img className={classes.ava}
                      src={props.profile.photos.small}
                      alt=""/>
-                <ProfileStatus />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                 {props.profile.aboutMe}
             </div>
 

@@ -1,18 +1,35 @@
 import React, {FC, useEffect} from "react";
 import Profile from "./Profile";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {PostsType, ProfilePageType, ProfileType} from "../../redux/store";
+import {ProfilePageType, ProfileType} from "../../redux/store";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfile} from "../../redux/profile-reduce";
-import {useLocation, useParams, useNavigate} from "react-router-dom";
+import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reduce";
+import {useLocation, useParams, useNavigate, createBrowserRouter} from "react-router-dom";
 import {compose} from "redux";
 
 
+type PathParamsType = {
+    userId: string | undefined
+}
+type PropsType = PathParamsType & MapStatePropsType
+//
+// type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType
+//
+// type MapStateToPropsType = {
+//     profile: ProfileType | null
+//     status: string
+//
+// }
+//
+// type MapDispatchToPropsType = {
+//     getUsersProfile: (userId: number) => void
+//     getStatus: (userId: number) => void
+//     updateStatus: (status: string) => void
+// }
 
 type MapStatePropsType = {
-    posts: PostsType[]
-    newPostText: string
     profile: ProfileType | null
+    status: string
 }
 
 function withRouter(Component: any) {
@@ -32,14 +49,22 @@ function withRouter(Component: any) {
 }
 
 
-const ProfileContainer: React.FC = () => {
+const ProfileContainer: React.FC = ()  => {
     const params = useParams();
     const profilePage = useSelector<AppStateType, ProfilePageType>(state => state.profilePage)
     const dispatch = useDispatch<any>()
 
+    const getUserInfo = (userId: number) => {
+        dispatch(getUserProfile(userId))
+        dispatch(getStatus(userId))
+    }
+
     useEffect(() => {
         let userId = params.userId
-        dispatch(getUserProfile(userId ? userId : '27669'))
+        if (userId) getUserInfo(+userId)
+        else getUserInfo(27669)
+        //dispatch( getUserProfile(userId ? +userId : 27669) )
+        //dispatch(getStatus(userId ? +userId : 27669))
 
     }, [params.userId])
 
@@ -48,9 +73,10 @@ const ProfileContainer: React.FC = () => {
     return (
         <div>
             <Profile
-                posts={profilePage.posts}
-                newPostText={profilePage.newPostText}
-                profile={profilePage.profile}/>
+                profile={profilePage.profile}
+                status={profilePage.status}
+                updateStatus={updateStatus}
+            />
         </div>
     )
 }
@@ -58,10 +84,8 @@ const ProfileContainer: React.FC = () => {
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText,
         profile: state.profilePage.profile,
-        // isAuth: state.auth.isAuth
+        status: state.profilePage.status
     }
 }
 
