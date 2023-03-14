@@ -4,28 +4,10 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import {ProfilePageType, ProfileType} from "../../redux/store";
 import {AppStateType} from "../../redux/redux-store";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reduce";
-import {useLocation, useParams, useNavigate, createBrowserRouter} from "react-router-dom";
+import {useLocation, useParams, useNavigate} from "react-router-dom";
 import {compose} from "redux";
 
 
-type PathParamsType = {
-    userId: string | undefined
-}
-type PropsType = PathParamsType & MapStatePropsType
-//
-// type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType
-//
-// type MapStateToPropsType = {
-//     profile: ProfileType | null
-//     status: string
-//
-// }
-//
-// type MapDispatchToPropsType = {
-//     getUsersProfile: (userId: number) => void
-//     getStatus: (userId: number) => void
-//     updateStatus: (status: string) => void
-// }
 
 type MapStatePropsType = {
     profile: ProfileType | null

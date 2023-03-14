@@ -16,7 +16,6 @@ export function WithAuthRedirect <ElementType>(Component:FC<ElementType> ) {
     const RedirectComponent = (props: MapStatePropsType) => {
 
         const {isAuth, ...restProps} = props;
-console.log(isAuth)
          if (!isAuth) return <Navigate to={"/login"}/>
 
         return <Component {...restProps as ElementType}/>

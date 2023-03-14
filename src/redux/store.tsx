@@ -4,7 +4,7 @@ import profileReduce, {
     setUserProfileType,
     UpdateNewPostTextType
 } from "./profile-reduce";
-import dialogsReduce, {SendMessage, UpdateNewMessageBody} from "./dialogs-reducer";
+import dialogsReduce, {SendMessage} from "./dialogs-reducer";
 import {setUserDataType} from "./auth-reduce";
 
 
@@ -30,7 +30,6 @@ export type PostsType = {
 export type DialogsPageType = {
     messages: Array<MessagesType>
     dialogs: Array<DialogsType>
-    newMessageBody: string
 }
 
 export type MessagesType = {
@@ -76,7 +75,6 @@ export type ProfileType = {
 
 export type ActionsTypes = AddPostReturnType |
     UpdateNewPostTextType |
-    UpdateNewMessageBody |
     SendMessage |
     setUserProfileType |
     setUserDataType |
@@ -124,8 +122,7 @@ const store: StoreType = {
                 {id: 4, name: 'Sasha'},
                 {id: 5, name: 'Viktor'},
                 {id: 6, name: 'Valera'}
-            ],
-            newMessageBody: ''
+            ]
         }
     },
     getState() {
