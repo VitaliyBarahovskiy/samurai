@@ -1,8 +1,7 @@
 import profileReduce, {
     AddPostReturnType,
     setStatusType,
-    setUserProfileType,
-    UpdateNewPostTextType
+    setUserProfileType
 } from "./profile-reduce";
 import dialogsReduce, {SendMessage} from "./dialogs-reducer";
 import {setUserDataType} from "./auth-reduce";
@@ -10,7 +9,6 @@ import {setUserDataType} from "./auth-reduce";
 
 export  type ProfilePageType = {
     posts: Array<PostsType>,
-    newPostText: string,
     profile:null | ProfileType
     status: string
 
@@ -74,7 +72,6 @@ export type ProfileType = {
 
 
 export type ActionsTypes = AddPostReturnType |
-    UpdateNewPostTextType |
     SendMessage |
     setUserProfileType |
     setUserDataType |
@@ -102,7 +99,6 @@ const store: StoreType = {
                 {id: 3, message: 'Blabla', likesCount: 5},
                 {id: 4, message: 'Dada', likesCount: 11}
             ],
-            newPostText: "",
             profile: null,
             status: ""
 
