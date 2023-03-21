@@ -3,7 +3,7 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getAuthUserData} from "../../redux/auth-reduce";
+import {getAuthUserData, logout} from "../../redux/auth-reduce";
 
 type MapStatePropsType = {
     userId: number | null
@@ -41,4 +41,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 
-export default compose<FC>(connect(mapStateToProps, {getAuthUserData}))(HeaderContainer)
+export default compose<FC>(connect(mapStateToProps, {getAuthUserData, logout}))(HeaderContainer)
