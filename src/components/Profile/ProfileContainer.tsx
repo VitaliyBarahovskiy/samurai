@@ -12,6 +12,8 @@ import {compose} from "redux";
 type MapStatePropsType = {
     profile: ProfileType | null
     status: string
+    authorizedUserId : number | null
+    isAuth: boolean
 }
 
 function withRouter(Component: any) {
@@ -67,7 +69,9 @@ const ProfileContainer: React.FC = ()  => {
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 }
 

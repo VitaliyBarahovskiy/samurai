@@ -5,6 +5,7 @@ import {requredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reduce";
 import {Navigate} from "react-router-dom";
+import styles from "./../Common/FormsControls/FormsControls.module.css"
 
 type FormDataType = {
     login: string
@@ -38,9 +39,18 @@ const Login = (props: any) => {
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form action="" onSubmit={props.handleSubmit}>
-            <Field component={Input} name={'email'} placeholder={'Email'} validate={[requredField]}/>
-            <Field component={Input} name={'password'} type={"password"} placeholder={'Password'} validate={[requredField]}/>
-            <Field component={Input} name={'rememberMe'} type="checkbox" /> remember Me
+            <div>
+                <Field component={Input} name={'email'} placeholder={'Email'} validate={[requredField]}/>
+            </div>
+            <div>
+                <Field component={Input} name={'password'} type={"password"} placeholder={'Password'} validate={[requredField]}/>
+            </div>
+            <div>
+                <Field component={Input} name={'rememberMe'} type="checkbox" /> remember Me
+            </div>
+            { props.error && <div className={styles.formSummaryError}>
+                {props.error}
+            </div>}
             <button>Login</button>
 
         </form>
