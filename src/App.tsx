@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
@@ -10,11 +10,26 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 
 
+import {useDispatch, useSelector} from 'react-redux';
+import {AppStateType} from './redux/redux-store';
+import Preloader from "./components/Common/Preloader/Preloader";
+import {initializeApp} from "./redux/app-reducer";
+
+
 const App = () => {
 
+    const dispatch = useDispatch()
+    const initialized = useSelector<AppStateType, boolean>(state => state.app.initialized)
+    console.log(initialized)
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(initializeApp())
+    }, [])
 
-    // @ts-ignore
+
     return (
+        !initialized ? <Preloader/>
+            :
         <div className='app-wrapper'>
             <HeaderContainer/>
             <Navbar/>

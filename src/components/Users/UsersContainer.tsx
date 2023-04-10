@@ -83,7 +83,6 @@ let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 
 export default compose<FC>(
-    withAuthRedirect,
     connect(mapStateToProps, {
         follow,
         unfollow,

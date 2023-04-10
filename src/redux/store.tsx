@@ -5,6 +5,7 @@ import profileReduce, {
 } from "./profile-reduce";
 import dialogsReduce, {SendMessage} from "./dialogs-reducer";
 import {setUserDataType} from "./auth-reduce";
+import {InitializedSuccessACType} from "./app-reducer";
 
 
 export  type ProfilePageType = {
@@ -75,7 +76,8 @@ export type ActionsTypes = AddPostReturnType |
     SendMessage |
     setUserProfileType |
     setUserDataType |
-    setStatusType
+    setStatusType |
+    InitializedSuccessACType
 
 
 export type StoreType = {

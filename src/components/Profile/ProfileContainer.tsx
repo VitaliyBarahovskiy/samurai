@@ -50,6 +50,7 @@ const ProfileContainer: React.FC = ()  => {
         //dispatch( getUserProfile(userId ? +userId : 27669) )
         //dispatch(getStatus(userId ? +userId : 27669))
 
+
     }, [params.userId])
 
 
